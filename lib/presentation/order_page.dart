@@ -26,3 +26,41 @@ class _OrderPageState extends State<OrderPage> {
           (jumlahMinuman * 5000); // Hitung total harga
     });
   }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('order page')),
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            children: [
+              TextFormField(
+                controller: makananController,
+                decoration: const InputDecoration(labelText: 'food order'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'please enter your food order';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: jumlahMakananController,
+                decoration: const InputDecoration(labelText: 'food qty order'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'please enter your qty of food';
+                  }
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
