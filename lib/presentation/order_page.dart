@@ -50,12 +50,57 @@ class _OrderPageState extends State<OrderPage> {
               const SizedBox(height: 16),
               TextFormField(
                 controller: jumlahMakananController,
-                decoration: const InputDecoration(labelText: 'food qty order'),
+                decoration: const InputDecoration(labelText: 'food QTY Order'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'please enter your qty of food';
+                    return 'Please enter your qty of food order';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: minumanController,
+                decoration: const InputDecoration(labelText: 'Drink Order'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your drink order';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16),
+              TextFormField(
+                controller: jumlahMinumanController,
+                decoration: const InputDecoration(labelText: 'Drink QTY Order'),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your quantity of drink order';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    calculateTotalPrice();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder:
+                            (context) => DetailOrderPage(
+                              jumlahMakanan: jumlahMakananController.text,
+                              jumlahMinuman: jumlahMinumanController.text,
+                              makanan: makananController.text,
+                              minuman: minumanController.text,
+                              totalHarga: totalHarga,
+                            ),
+                      ),
+                    );
                   }
                 },
+                child: const Text('Order Now'),
               ),
             ],
           ),
