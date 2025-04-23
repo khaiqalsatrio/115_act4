@@ -16,7 +16,7 @@ class _RegisterPageState extends State<RegisterPage> {
     super.initState(); // Perbaikan typo dari 'iniState' ke 'initState'
   }
 
-    @override
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Form(
@@ -36,3 +36,28 @@ class _RegisterPageState extends State<RegisterPage> {
                   return null;
                 },
               ),
+              TextFormField(
+                controller: passwordController,
+                decoration: const InputDecoration(labelText: 'Password'),
+                obscureText: true,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your password';
+                  }
+                  return null;
+                },
+              ),
+              ElevatedButton(onPressed: () {}, child: Text('Register')),
+              TextButton(
+                onPressed: () {
+                  Navigator.pushNamed(context, '/login');
+                },
+                child: Text('Kamu Sudah punya akun? Login sekarang'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
