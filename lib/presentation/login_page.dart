@@ -14,14 +14,14 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void initState() {
-    super.initState(); 
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.all(16.0), 
+        padding: const EdgeInsets.all(16.0),
         child: Form(
           key: _formKey,
           child: Column(
@@ -37,3 +37,56 @@ class _LoginPageState extends State<LoginPage> {
                   return null;
                 },
               ),
+              TextFormField(
+                controller: passwordController,
+                decoration: const InputDecoration(labelText: 'Password'),
+                obscureText: true,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your password';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                controller: passwordController,
+                decoration: const InputDecoration(labelText: 'Password'),
+                obscureText: true,
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Please enter your password';
+                  }
+                  return null;
+                },
+              ),
+              const SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    // Jika valid, arahkan ke halaman Home
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => const HomePage()),
+                    );
+                  }
+                },
+                child: const Text('Login'),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const RegisterPage(),
+                    ),
+                  );
+                },
+                child: const Text("Belum Punya akun? Register"),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
